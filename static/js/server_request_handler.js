@@ -28,11 +28,66 @@ function request_server(first_number_value, second_number_value, url){
 
 }
 */
-$("#add_button").click(function(e) {
+/*
+$("#predictBodyTypeButton").click(function(e) {
+    //e.preventDefault(); // prevents page refreshing
+    console.log("predictBodyTypeButton was clicked!");
     e.preventDefault(); // prevents page refreshing
-    var first_number_value = $("#first_number").val();
-    var second_number_value = $("#second_number").val();
-    url = "/summation";
+    //var first_number_value = $("#first_number").val();
+    //var second_number_value = $("#second_number").val();
+    //url = "/summation";
     //request_server(first_number_value, second_number_value, url);
+});
+*/
+
+function getFormData() {
+    var genderValue = null;
+    var isMaleChecked = $("#male").is(":checked");
+    if (isMaleChecked) {
+        genderValue = "Male"
+    } else {
+        genderValue = "Female"
+    }
+
+    var ageValue = $("#age").val();
+    var heightValue = $("#height").val();
+    var weightValue = $("#weight").val();
+
+    var familyHistoryWithOverweight = null;
+    var familyHistoryWithOverweightYesChecked = $("#familyHistoryWithOverweightYes").is(":checked");
+    if (familyHistoryWithOverweightYesChecked) {
+        familyHistoryWithOverweight = "yes"
+    } else {
+        familyHistoryWithOverweight = "no"
+    }
+
+    var favc = null;
+    var FAVC_yes_checked = $("#FAVC_yes").is(":checked");
+    if (FAVC_yes_checked) {
+        favc = "yes"
+    } else {
+        favc = "no"
+    }
+
+    var FCVC_value = $("#FCVC").val();
+
+    var formData = {
+    "gender": genderValue,
+    "age": ageValue,
+    "height": heightValue,
+    "weight": weightValue,
+    "family_history_with_overweight": familyHistoryWithOverweight,
+    "FAVC": favc,
+    "FCVC": FCVC_value
+    }
+    return formData;
+}
+
+jQuery("form").submit(function(e){
+  e.preventDefault();
+  // console.log("predictBodyTypeButton was clicked!");
+  formData = getFormData();
+  console.log(formData);
+
 });
 
