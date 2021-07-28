@@ -50,4 +50,7 @@ app.add_url_rule('/', view_func=main_page_sender_view, methods=['GET'])
 body_type_machine_learning_model_view = BodyTypeMachineLearningModelAPI.as_view('body_type_machine_learning_model_api')
 app.add_url_rule('/predict_body_type', view_func=body_type_machine_learning_model_view, methods=['POST', 'GET'])
 
+# for local host
 app.run(debug=True)
+# You need to run the app with your IPv4 address in order to test UI with your mobile phone
+# app.run(debug=True, host='your IPv4 address')
