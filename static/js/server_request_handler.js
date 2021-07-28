@@ -6,11 +6,21 @@ function request_server(formData, url){
           type : 'POST',
           url : url,
           data : formData,
+          beforeSend: function(){
+            $("#preloaderDiv").show();
+            $("#formHeaderDiv").hide();
+            $("#formDiv").hide();
+          },
+          complete: function(){
+            $("#preloaderDiv").hide();
+            $("#formHeaderDiv").show();
+            $("#formDiv").show();
+          },
           success: function(response) {
-            Materialize.toast(response, 5000)
+            Materialize.toast(response, 5000);
           },
           error: function(error) {
-            console.log(error);
+            Materialize.toast(error, 5000);
           }
     });
 
