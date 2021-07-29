@@ -22,11 +22,21 @@ class MainPageSenderAPI(MethodView):
 
 
 class BodyTypeMachineLearningModelAPI(MethodView):
-
+    """API for '/predict_body_type' url.
+    """
     def get(self):
-        return "Welcome to Body Type Machine Learning Model API!", 200
+        """Handles GET requests for '/predict_body_type' url.
+        Returns:
+            message: tuple. Welcome message.
+        """
+        message = "Welcome to Body Type Machine Learning Model API!", 200
+        return message
 
     def post(self):
+        """Handles POST requests for '/predict_body_type' url.
+        Returns:
+            message: tuple. Server message for clients.
+        """
         print("BodyTypeMachineLearningModelAPI POST Method")
         message = None
         parameter_list = ["gender", "age", "height", "weight",
