@@ -1,3 +1,4 @@
+import datetime
 import random
 import string
 import os
@@ -13,3 +14,8 @@ class BackendHelper:
 def get_working_directory():
     working_directory = os.getcwd()
     return working_directory
+
+
+def get_now():
+    now = datetime.datetime.now()
+    return now
