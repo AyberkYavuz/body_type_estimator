@@ -9,6 +9,7 @@ print("Data path: " + data_path)
 data = pd.read_csv(data_path)
 
 print("creating exploratory_data_analysis.html file.")
-profile = pandas_profiling.ProfileReport(data)
+profile = pandas_profiling.ProfileReport(data, title="Pandas Profiling Report", explorative=True)
+
 html_file_path = working_directory + '/templates/exploratory_data_analysis.html'
 profile.to_file(html_file_path)
