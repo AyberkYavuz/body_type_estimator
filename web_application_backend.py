@@ -21,6 +21,26 @@ class MainPageSenderAPI(MethodView):
         return render_template(html_file)
 
 
+class ExploratoryDataAnalysisHTMLSenderAPI(MethodView):
+    """API for '/exploratory_data_analysis' url. To use this API,
+    you need to run create_exploratory_data_analysis_html_file.py
+    first.
+    """
+    def get(self):
+        """Handles GET requests for '/exploratory_data_analysis' url.
+        Returns:
+            response: tuple or html. Server response to clients.
+        """
+        response = None
+        try:
+            html_file = "exploratory_data_analysis.html"
+            response = render_template(html_file)
+        except Exception:
+            response = "To use '/exploratory_data_analysis' service, first you need to " \
+                       "run create_exploratory_data_analysis_html_file.py", 500
+        return response
+
+
 class BodyTypeMachineLearningModelAPI(MethodView):
     """API for '/predict_body_type' url.
     """
@@ -35,7 +55,7 @@ class BodyTypeMachineLearningModelAPI(MethodView):
     def post(self):
         """Handles POST requests for '/predict_body_type' url.
         Returns:
-            message: tuple. Server message for clients.
+            message: tuple. Server response to clients.
         """
         print("BodyTypeMachineLearningModelAPI POST Method")
         message = None
@@ -63,6 +83,9 @@ class BodyTypeMachineLearningModelAPI(MethodView):
 
 main_page_sender_view = MainPageSenderAPI.as_view('main_page_sender_api')
 app.add_url_rule('/', view_func=main_page_sender_view, methods=['GET'])
+
+exploratory_data_analysis_html_sender_view = ExploratoryDataAnalysisHTMLSenderAPI.as_view('exploratory_data_analysis_html_sender_api')
+app.add_url_rule('/exploratory_data_analysis', view_func=exploratory_data_analysis_html_sender_view, methods=['GET'])
 
 body_type_machine_learning_model_view = BodyTypeMachineLearningModelAPI.as_view('body_type_machine_learning_model_api')
 app.add_url_rule('/predict_body_type', view_func=body_type_machine_learning_model_view, methods=['POST', 'GET'])
