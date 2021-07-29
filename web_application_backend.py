@@ -10,8 +10,15 @@ app.secret_key = BackendHelper.create_random_aplhanumeric_string()
 
 
 class MainPageSenderAPI(MethodView):
+    """API for '/' url.
+    """
     def get(self):
-        return render_template("main_page.html")
+        """Handles GET requests for '/' url.
+        Returns:
+            html_file: Main page html file.
+        """
+        html_file = "main_page.html"
+        return render_template(html_file)
 
 
 class BodyTypeMachineLearningModelAPI(MethodView):
