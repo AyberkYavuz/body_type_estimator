@@ -93,5 +93,6 @@ app.add_url_rule('/predict_body_type', view_func=body_type_machine_learning_mode
 if __name__ == "__main__":
     # for local host
     app.run(debug=True)
-    # You need to run the app with your IPv4 address in order to test UI with your mobile phone
+    # You need to run the app with your IPv4 address in order to test UI with
+    # your mobile phone which is connected to the same WiFi that your PC is connected to.
     # app.run(debug=True, host='your IPv4 address')
