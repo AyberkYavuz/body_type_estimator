@@ -95,13 +95,14 @@ class XgboostModelCreator:
         return pickle_handler.load_object(path)
 
     @staticmethod
-    def display_classification_report(model, X_test, y_test):
+    def display_classification_report(model, X_test, y_test, target_names=None):
         """Displays classification report.
         Args:
             model: XGBClassifier or RandomizedSearchCV model
             X_test: it can be list, numpy array, scipy-sparse matrix or pandas dataframe.
             y_test: it can be list, numpy array, pandas series.
+            target_names: list. Default: None. Names of target column categories.
         """
         y_pred = model.predict(X_test)
-        print(classification_report(y_test, y_pred))
+        print(classification_report(y_test, y_pred, target_names=target_names))
 
