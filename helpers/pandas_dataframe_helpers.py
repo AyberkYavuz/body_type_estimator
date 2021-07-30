@@ -19,3 +19,25 @@ def split_dataframe_as_train_and_test_instances(dataframe, target_column, featur
     y_train = y_train.astype(float)
     y_test = y_test.astype(float)
     return X_train, X_test, y_train, y_test
+
+
+target = 'NObeyesdad'
+
+features = [
+    "Gender",
+    "Age",
+    "Height",
+    "Weight",
+    "family_history_with_overweight",
+    "FAVC",
+    "FCVC",
+    "NCP",
+    "CAEC",
+    "SMOKE",
+    "CH2O",
+    "SCC",
+    "FAF",
+    "TUE",
+    "CALC",
+    "MTRANS"
+]
