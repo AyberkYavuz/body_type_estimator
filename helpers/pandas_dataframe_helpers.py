@@ -41,3 +41,23 @@ features = [
     "CALC",
     "MTRANS"
 ]
+
+feature_descriptions = {
+    "Gender": "Gender",
+    "Age": "Age",
+    "Height": "Height",
+    "Weight": "Weight",
+    "family_history_with_overweight": "Family Overweight",
+    "FAVC": "Eating High Caloric Food",
+    "FCVC": "Eating Vegetables",
+    "NCP": "Daily Meals Count",
+    "CAEC": "Eating Between Meals",
+    "SMOKE": "Smoke",
+    "CH2O": "Drinking Water Daily",
+    "SCC": "Monitoring Calories Daily",
+    "FAF": "Physical Activity",
+    "TUE": "Time Spending with Technology",
+    "CALC": "Alcohol Consumption",
+    "MTRANS": "Transportation Type"
+}
+
