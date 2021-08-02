@@ -1,4 +1,5 @@
 from sklearn.model_selection import train_test_split as sk_train_test_split
+import pandas as pd
 
 
 def split_dataframe_as_train_and_test_instances(dataframe, target_column, feature_columns, test_size=0.2):
@@ -60,4 +61,11 @@ feature_descriptions = {
     "CALC": "Alcohol Consumption",
     "MTRANS": "Transportation Type"
 }
+
+
+def get_most_important_features(importances, feature_names, top_n):
+    feature_importances = pd.Series(importances, index=feature_names)
+    most_important_top_n_features = list(feature_importances.nlargest(top_n).to_dict().keys())
+    return most_important_top_n_features
+
 
