@@ -2,6 +2,11 @@ from sklearn.model_selection import train_test_split as sk_train_test_split
 import pandas as pd
 
 
+def get_data(data_path):
+    data = pd.read_csv(data_path)
+    return data
+
+
 def split_dataframe_as_train_and_test_instances(dataframe, target_column, feature_columns, test_size=0.2):
     """Splits pandas dataframe as X_train, X_test, y_train, y_test.
     Parameters:
