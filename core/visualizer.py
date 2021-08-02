@@ -14,6 +14,6 @@ class MatplotlibVisualizer:
         plt.rcParams.update({'font.size': font_size})
         feature_importances = pd.Series(importances, index=feature_names)
         feature_importances.nlargest(top_n).plot(kind='barh')
-        plt.title(str(top_n) + " Important Features")
+        plt.title(str(top_n) + " Feature Columns Importances")
         plt.show()
 
