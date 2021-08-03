@@ -39,5 +39,22 @@ base_xgboost_model_with_selected_features_path = working_directory + '/models/' 
                                                                      'base_xgboost_model_with_selected_features.pickle'
 base_xgboost_model_with_selected_features = XgboostModelCreator.load_model(base_xgboost_model_with_selected_features_path)
 
+print("Loading body_type_estimation_data_selected_columns.csv")
+updated_data_path = working_directory + '/machine_learning_data/body_type_estimation_data_selected_columns.csv'
+body_type_estimation_data_selected_columns = get_data(updated_data_path)
+selected_features = get_most_important_features(base_model.feature_importances_, features, 12)
+
+print("Splitting updated data.")
+X_train2, X_test2, y_train2, y_test2 = split_dataframe_as_train_and_test_instances(body_type_estimation_data_selected_columns,
+                                                                                   target, selected_features,
+                                                                                   test_size=0.3)
+
+print("Base model with feature selection classification report for training set.")
+XgboostModelCreator.display_classification_report(base_xgboost_model_with_selected_features, X_train2, y_train2,
+                                                  target_names=nobeyesdad_label_encoder.classes_)
+
+print("Base model with feature selection classification report for test set.")
+XgboostModelCreator.display_classification_report(base_xgboost_model_with_selected_features, X_test2, y_test2,
+                                                  target_names=nobeyesdad_label_encoder.classes_)
 
 print("xgboost_base_models_comparison.py execution ends: " + str(get_now()))
