@@ -1,4 +1,4 @@
-import pandas as pd
+from helpers.pandas_dataframe_helpers import get_data
 from helpers.application_helpers import get_working_directory
 from helpers.application_helpers import get_now
 from helpers.pandas_dataframe_helpers import target
@@ -12,7 +12,7 @@ print("Getting body_type_estimation_data.csv")
 working_directory = get_working_directory()
 data_path = working_directory + "/machine_learning_data/body_type_estimation_data.csv"
 print("Data path: " + data_path)
-body_type_estimation_data = pd.read_csv(data_path)
+body_type_estimation_data = get_data(data_path)
 print(body_type_estimation_data.head())
 print("Splitting data.")
 X_train, X_test, y_train, y_test = split_dataframe_as_train_and_test_instances(body_type_estimation_data, target,
