@@ -42,7 +42,7 @@ base_xgboost_model_with_selected_features = XgboostModelCreator.load_model(base_
 print("Loading body_type_estimation_data_selected_columns.csv")
 updated_data_path = working_directory + '/machine_learning_data/body_type_estimation_data_selected_columns.csv'
 body_type_estimation_data_selected_columns = get_data(updated_data_path)
-selected_features = get_most_important_features(base_model.feature_importances_, features, 12)
+selected_features = get_most_important_features(base_model.feature_importances_, features, 7)
 
 print("Splitting updated data.")
 X_train2, X_test2, y_train2, y_test2 = split_dataframe_as_train_and_test_instances(body_type_estimation_data_selected_columns,

@@ -23,7 +23,7 @@ matplotlib_visualizer.show_feature_importances(base_xgboost_model.feature_import
 
 print("Creating body_type_estimation_data_selected_columns dataframe")
 feature_names = list(feature_descriptions.keys())
-selected_columns = get_most_important_features(base_xgboost_model.feature_importances_, feature_names, 12)
+selected_columns = get_most_important_features(base_xgboost_model.feature_importances_, feature_names, 7)
 data_path = working_directory + "/machine_learning_data/body_type_estimation_data.csv"
 body_type_estimation_data = get_data(data_path)
 selected_columns.append(target)
