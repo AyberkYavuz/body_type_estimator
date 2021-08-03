@@ -29,6 +29,10 @@ body_type_estimation_data = get_data(data_path)
 selected_columns.append(target)
 body_type_estimation_data_selected_columns = body_type_estimation_data[selected_columns]
 
+print("Saving body_type_estimation_data_selected_columns as a csv file.")
+updated_data_path = working_directory + '/machine_learning_data/body_type_estimation_data_selected_columns.csv'
+body_type_estimation_data_selected_columns.to_csv(updated_data_path, index=False)
+
 print("Splitting body_type_estimation_data_selected_columns.")
 selected_columns = selected_columns[:-1]
 X_train, X_test, y_train, y_test = split_dataframe_as_train_and_test_instances(body_type_estimation_data, target,
