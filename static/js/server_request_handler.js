@@ -38,14 +38,6 @@ function getFormData() {
     var heightValue = $("#height").val();
     var weightValue = $("#weight").val();
 
-    var familyHistoryWithOverweight = null;
-    var familyHistoryWithOverweightYesChecked = $("#familyHistoryWithOverweightYes").is(":checked");
-    if (familyHistoryWithOverweightYesChecked) {
-        familyHistoryWithOverweight = "yes"
-    } else {
-        familyHistoryWithOverweight = "no"
-    }
-
     var favc = null;
     var FAVC_yes_checked = $("#FAVC_yes").is(":checked");
     if (FAVC_yes_checked) {
@@ -60,7 +52,6 @@ function getFormData() {
     "gender": genderValue,
     "height": heightValue,
     "weight": weightValue,
-    "family_history_with_overweight": familyHistoryWithOverweight,
     "FAVC": favc,
     "FCVC": FCVC_value
     }
