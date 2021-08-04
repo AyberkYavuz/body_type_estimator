@@ -46,14 +46,17 @@ function getFormData() {
         favc = "no"
     }
 
-    var FCVC_value = $("#FCVC").val();
+    var fcvcValue = $("#FCVC").val();
+
+    var calcValue = $("#CALC").val();
 
     var formData = {
     "gender": genderValue,
     "height": heightValue,
     "weight": weightValue,
     "FAVC": favc,
-    "FCVC": FCVC_value
+    "FCVC": fcvcValue,
+    "CALC": calcValue
     }
     return formData;
 }
