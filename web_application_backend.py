@@ -60,7 +60,7 @@ class BodyTypeMachineLearningModelAPI(MethodView):
         print("BodyTypeMachineLearningModelAPI POST Method")
         message = None
         parameter_list = ["gender", "height", "weight",
-                          "FAVC", "FCVC", "CALC"]
+                          "FAVC", "FCVC", "CALC", "CH2O"]
         result_list = []
         for parameter in parameter_list:
             result = parameter not in request.form

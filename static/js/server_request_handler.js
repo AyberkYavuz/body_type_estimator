@@ -50,13 +50,16 @@ function getFormData() {
 
     var calcValue = $("#CALC").val();
 
+    var ch20Value = $("#CH2O").val();
+
     var formData = {
     "gender": genderValue,
     "height": heightValue,
     "weight": weightValue,
     "FAVC": favc,
     "FCVC": fcvcValue,
-    "CALC": calcValue
+    "CALC": calcValue,
+    "CH2O": ch20Value
     }
     return formData;
 }
