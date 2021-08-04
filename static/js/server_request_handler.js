@@ -35,7 +35,6 @@ function getFormData() {
         genderValue = "Female"
     }
 
-    var ageValue = $("#age").val();
     var heightValue = $("#height").val();
     var weightValue = $("#weight").val();
 
@@ -59,7 +58,6 @@ function getFormData() {
 
     var formData = {
     "gender": genderValue,
-    "age": ageValue,
     "height": heightValue,
     "weight": weightValue,
     "family_history_with_overweight": familyHistoryWithOverweight,

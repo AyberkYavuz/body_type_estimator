@@ -59,7 +59,7 @@ class BodyTypeMachineLearningModelAPI(MethodView):
         """
         print("BodyTypeMachineLearningModelAPI POST Method")
         message = None
-        parameter_list = ["gender", "age", "height", "weight",
+        parameter_list = ["gender", "height", "weight",
                           "family_history_with_overweight",
                           "FAVC", "FCVC"]
         result_list = []
