@@ -1,8 +1,15 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+import time
 from flask.views import MethodView
 from helpers.application_helpers import BackendHelper
+import pandas as pd
+from helpers.application_helpers import get_working_directory
+from core.file_handler import PickleHandler
+
+working_directory = get_working_directory()
+pickle_handler = PickleHandler()
 
 
 app = Flask(__name__)
@@ -52,6 +59,42 @@ class BodyTypeMachineLearningModelAPI(MethodView):
         message = "Welcome to Body Type Machine Learning Model API!", 200
         return message
 
+    def get_features_dataframe(self):
+        """Converts client request parameters to features_dataframe
+        Returns:
+            features_dataframe: dataframe. It will be used for producing prediction.
+        """
+        gender = request.form["gender"]
+        fcvc = request.form["FCVC"]
+        weight = request.form["weight"]
+        calc = request.form["CALC"]
+        favc = request.form["FAVC"]
+        height = request.form["height"]
+        ch2o = request.form["CH2O"]
+        features_values = [[gender, fcvc, weight, calc, favc, height, ch2o]]
+        feature_names = ["Gender", "FCVC", "Weight", "CALC", "FAVC", "Height", "CH2O"]
+        features_dataframe = pd.DataFrame(features_values, columns=feature_names)
+        return features_dataframe
+
+    def load_production_machine_learning_model(self):
+        """Loading production machine learning model.
+        Returns:
+            production_machine_learning_model: XGBClassifier. It will produce predictions.
+        """
+        production_machine_learning_model_path = working_directory + '/models' \
+                                                                     '/base_xgboost_model_with_selected_features.pickle'
+        production_machine_learning_model = pickle_handler.load_object(production_machine_learning_model_path)
+        return production_machine_learning_model
+
+    def load_target_label_encoder(self):
+        """Loading target label encoder.
+        Returns:
+            target_label_encoder: LabelEncoder. It will convert numeric prediction to string value.
+        """
+        target_label_encoder_path = working_directory + '/models/NObeyesdad_label_encoder.pickle'
+        target_label_encoder = pickle_handler.load_object(target_label_encoder_path)
+        return target_label_encoder
+
     def post(self):
         """Handles POST requests for '/predict_body_type' url.
         Returns:
@@ -71,9 +114,21 @@ class BodyTypeMachineLearningModelAPI(MethodView):
             message = "422", 422
         else:
             try:
-                import time
-                time.sleep(5)  # this line is for user interface test
-                message = "development message", 200
+                time.sleep(2)  # this line is for user interface test.
+                print("Converting client request parameters to features_dataframe.")
+                features_dataframe = self.get_features_dataframe()
+                features_dataframe = features_dataframe.astype(float)
+                print(features_dataframe.head())
+                print("Loading production machine learning model.")
+                production_machine_learning_model = self.load_production_machine_learning_model()
+                print("Making a prediction.")
+                prediction = production_machine_learning_model.predict(features_dataframe)[0]
+                print(prediction)
+                print("Loading target label encoder.")
+                target_label_encoder = self.load_target_label_encoder()
+                prediction = target_label_encoder.inverse_transform([int(prediction)])[0]
+                print(prediction)
+                message = prediction, 200
             except Exception as ex:
                 print("Exception : " + str(ex))
                 message = "Something went wrong!", 500
