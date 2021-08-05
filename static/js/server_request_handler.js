@@ -30,9 +30,9 @@ function getFormData() {
     var genderValue = null;
     var isMaleChecked = $("#male").is(":checked");
     if (isMaleChecked) {
-        genderValue = "Male"
+        genderValue = 0;
     } else {
-        genderValue = "Female"
+        genderValue = 1;
     }
 
     var heightValue = $("#height").val();
@@ -41,9 +41,9 @@ function getFormData() {
     var favc = null;
     var FAVC_yes_checked = $("#FAVC_yes").is(":checked");
     if (FAVC_yes_checked) {
-        favc = "yes"
+        favc = 1;
     } else {
-        favc = "no"
+        favc = 0;
     }
 
     var fcvcValue = $("#FCVC").val();
