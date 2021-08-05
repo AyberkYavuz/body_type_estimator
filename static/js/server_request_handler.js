@@ -20,7 +20,7 @@ function request_server(formData, url){
             Materialize.toast(response, 5000);
           },
           error: function(error) {
-            Materialize.toast(error, 5000);
+            Materialize.toast(error.responseText, 5000);
           }
     });
 
