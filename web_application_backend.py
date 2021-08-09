@@ -59,7 +59,7 @@ class BodyTypeMachineLearningModelAPI(MethodView):
         message = "Welcome to Body Type Machine Learning Model API!", 200
         return message
 
-    def get_features_dataframe(self):
+    def __get_features_dataframe(self):
         """Converts client request parameters to features_dataframe
         Returns:
             features_dataframe: dataframe. It will be used for producing prediction.
@@ -76,7 +76,7 @@ class BodyTypeMachineLearningModelAPI(MethodView):
         features_dataframe = pd.DataFrame(features_values, columns=feature_names)
         return features_dataframe
 
-    def load_production_machine_learning_model(self):
+    def __load_production_machine_learning_model(self):
         """Loading production machine learning model.
         Returns:
             production_machine_learning_model: XGBClassifier. It will produce predictions.
@@ -86,7 +86,7 @@ class BodyTypeMachineLearningModelAPI(MethodView):
         production_machine_learning_model = pickle_handler.load_object(production_machine_learning_model_path)
         return production_machine_learning_model
 
-    def load_target_label_encoder(self):
+    def __load_target_label_encoder(self):
         """Loading target label encoder.
         Returns:
             target_label_encoder: LabelEncoder. It will convert numeric prediction to string value.
@@ -116,16 +116,16 @@ class BodyTypeMachineLearningModelAPI(MethodView):
             try:
                 time.sleep(2)  # this line is for user interface test.
                 print("Converting client request parameters to features_dataframe.")
-                features_dataframe = self.get_features_dataframe()
+                features_dataframe = self.__get_features_dataframe()
                 features_dataframe = features_dataframe.astype(float)
                 print(features_dataframe.head())
                 print("Loading production machine learning model.")
-                production_machine_learning_model = self.load_production_machine_learning_model()
+                production_machine_learning_model = self.__load_production_machine_learning_model()
                 print("Making a prediction.")
                 prediction = production_machine_learning_model.predict(features_dataframe)[0]
                 print(prediction)
                 print("Loading target label encoder.")
-                target_label_encoder = self.load_target_label_encoder()
+                target_label_encoder = self.__load_target_label_encoder()
                 prediction = target_label_encoder.inverse_transform([int(prediction)])[0]
                 print(prediction)
                 message = prediction, 200
