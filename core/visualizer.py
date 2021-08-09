@@ -10,7 +10,7 @@ class MatplotlibVisualizer:
         Args:
             importances: numpy array or list. Feature importances of tree based machine learning model.
             feature_names: list. Names of important features
-            top_n: int. Feature set size.
+            top_n: int. The most important n features.
             font_size: int. Label font sizes of the plot.
         """
         plt.rcParams.update({'font.size': font_size})
