@@ -60,4 +60,6 @@ body_type_estimator/
 └── xgboost_base_models_comparison.py
 ```
 
-## This project is not completed yet!
+## Project Tutorial Video
+[Body Type Estimator Project Tutorial](https://www.youtube.com/watch?v=QwGwMftjUYI&ab_channel=AyberkYavuz)
+
